@@ -23,12 +23,15 @@ build_react() {
 build_others() {
     echo 'building others'
 
+    # enable webpack(need a webpack.config.js) if you 
+    # want background.js to be minified
+    
 #    webpack
 
-    # background.js was already in dist by webpack
+    # background.js and content_script.js should be copied 
+    # to dist if no webpack enabled
     cp src/background/background.js dist
-    # content_blocker.js was already in dist by webpack
-    # cp src/content/content_blocker.js dist
+    # cp src/content/content_script.js dist
 
     cp src/background/background.html dist
 #    cp src/background/firebase*.js dist
@@ -38,7 +41,6 @@ build_others() {
     cp public/manifest.json dist/manifest.json
 
     cp -r public/images dist
-    rm dist/images/*.xd
 }
 
 if [ $# -eq 0 ]; then
